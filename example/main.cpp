@@ -73,6 +73,9 @@ int main(int argc, char *argv[])
   // ---- Upload $localFileToUpload into $container/$azureFilenameForUpload ----
   if (true)
   {
+    if (!QFile::exists(localFileToUpload)) {
+      qDebug() << QString("Local file is missing : %1").arg(localFileToUpload);
+    }
     QNetworkReply* uploadFileReply = azure->uploadFile(localFileToUpload, container, azureFilenameForUpload);
     if (uploadFileReply != nullptr)
     {
